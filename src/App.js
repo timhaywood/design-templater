@@ -113,6 +113,7 @@ export default function App() {
   const [search, setSearch] = useState("cross church");
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
+  const [isSaving, setSaving] = useState(false);
 
   const imageSearches = search.split(" ").join(",");
   const dateObject = new Date(`${date}${time && ` ${time}`}`);
@@ -129,7 +130,8 @@ export default function App() {
 
   function handleSave(e, id) {
     e.preventDefault();
-    saveImage(id);
+    setSaving(true);
+    saveImage(id, () => setSaving(false));
   }
 
   return (
@@ -176,7 +178,9 @@ export default function App() {
               />
             </Label>
           </ControlGroup>
-          <Button onClick={(e) => handleSave(e, 'design')}>Save as PNG</Button>
+          <Button onClick={e => handleSave(e, "design")}>
+            {isSaving ? "Saving..." : "Save as PNG"}
+          </Button>
         </form>
       </Controls>
       <Design id="design">

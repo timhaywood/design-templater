@@ -6,7 +6,7 @@ var options = {
   useCORS: true,
 };
 
-const saveImage = elementId => {
+const saveImage = (elementId, callback) => {
   let fileName = `Design_${new Date().toISOString().substring(0, 10)}.png`;
   html2canvas(document.getElementById(elementId), options).then(canvas => {
     console.warn("Run!");
@@ -22,6 +22,7 @@ const saveImage = elementId => {
       downloadLink.click();
       button.removeChild(downloadLink);
     }
+    callback();
   });
 };
 
