@@ -101,7 +101,7 @@ const IconGroup = styled.div`
   p {
     margin: 0;
     margin-left: 8px;
-    padding-top: 4px;
+    padding-top: 3px;
   }
 `;
 
