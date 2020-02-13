@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import saveImage from "./DomToImage";
-import { Calendar, Clock } from "react-feather";
+import { Calendar, Clock, MapPin } from "react-feather";
 
 const Heading = styled.h1`
   margin-bottom: 32px;
@@ -113,6 +113,7 @@ export default function App() {
   const [search, setSearch] = useState("cross church");
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
+  const [location, setLocation] = useState("");
   const [isSaving, setSaving] = useState(false);
 
   const imageSearches = search.split(" ").join(",");
@@ -178,6 +179,13 @@ export default function App() {
               />
             </Label>
           </ControlGroup>
+          <Label>
+            Location
+            <Input
+              value={location}
+              onChange={event => setLocation(event.target.value)}
+            />
+          </Label>
           <Button onClick={e => handleSave(e, "design")}>
             {isSaving ? "Saving..." : "Save as PNG"}
           </Button>
@@ -197,6 +205,12 @@ export default function App() {
             <IconGroup>
               <Clock />
               <p>{timeString}</p>
+            </IconGroup>
+          )}
+          {location && (
+            <IconGroup>
+              <MapPin />
+              <p>{location}</p>
             </IconGroup>
           )}
         </ContentArea>
