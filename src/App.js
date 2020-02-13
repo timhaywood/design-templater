@@ -126,6 +126,12 @@ export default function App() {
     minute: "numeric",
     hour12: true,
   });
+
+  function handleSave(e, id) {
+    e.preventDefault();
+    saveImage(id);
+  }
+
   return (
     <Content className="App">
       <Controls>
@@ -170,7 +176,7 @@ export default function App() {
               />
             </Label>
           </ControlGroup>
-          <Button onClick={() => saveImage("design")}>Save as PNG</Button>
+          <Button onClick={(e) => handleSave(e, 'design')}>Save as PNG</Button>
         </form>
       </Controls>
       <Design id="design">
