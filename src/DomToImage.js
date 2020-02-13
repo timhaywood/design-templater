@@ -6,11 +6,11 @@ var options = {
   useCORS: true,
 };
 
-const saveImage = element => {
+const saveImage = elementId => {
   let fileName = `Design_${new Date().toISOString().substring(0, 10)}.png`;
-  html2canvas(document.getElementById(element), options).then(canvas => {
+  html2canvas(document.getElementById(elementId), options).then(canvas => {
     console.warn("Run!");
-    const button = document.getElementById(element);
+    const button = document.getElementById(elementId);
     const data = canvas.toDataURL("image/png");
     if (window.navigator.msSaveBlob) {
       window.navigator.msSaveBlob(canvas.msToBlob(), fileName);
@@ -24,14 +24,5 @@ const saveImage = element => {
     }
   });
 };
-
-/*
-function saveImage() {
-  html2canvas(document.querySelector("design")).then(function(canvas) {
-    document.body.appendChild(canvas);
-    console.warn("Appended!");
-  });
-}
-*/
 
 export default saveImage;
