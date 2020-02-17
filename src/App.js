@@ -287,7 +287,7 @@ export default function App() {
               </IconGroup>
             </Box>
           )}
-          {date && (
+          {time && (
             <Box paddingV={0.5}>
               <IconGroup>
                 <MdAccessTime size={18} color={colours[theme].accent} />
