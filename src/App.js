@@ -151,7 +151,7 @@ export default function App() {
     "A brief description that describes the event. Should be kept short!",
   );
 
-  const defaultImageUrl = `https://source.unsplash.com/random/600x800/?church`;
+  const defaultImageUrl = `https://images.unsplash.com/photo-1503756234508-e32369269deb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80`;
   const [imageUrl, setImageUrl] = useState(defaultImageUrl);
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
@@ -272,6 +272,9 @@ export default function App() {
               </Select>
             </Label>
           </ControlGroup>
+          {imageUrl && (
+            <small>(Other themes are only available without an image)</small>
+          )}
           <Button onClick={e => handleSave(e, "design")}>
             {isSaving ? "Saving..." : "Save as PNG"}
           </Button>
