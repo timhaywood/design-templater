@@ -161,11 +161,13 @@ export default function App() {
     month: "long",
     day: "numeric",
   });
-  const timeString = dateObject.toLocaleTimeString("en-UK", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
+  const timeString = dateObject
+    .toLocaleTimeString("en-UK", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    })
+    .toLowerCase();
 
   function handleSave(e, id) {
     e.preventDefault();
