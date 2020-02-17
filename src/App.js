@@ -163,6 +163,7 @@ export default function App() {
     month: "long",
     day: "numeric",
   });
+
   const timeString = dateObject
     .toLocaleTimeString("en-UK", {
       hour: "numeric",
@@ -175,6 +176,13 @@ export default function App() {
     e.preventDefault();
     setSaving(true);
     saveImage(id, () => setSaving(false));
+  }
+
+  function handleImageUrlChange(event) {
+    if (event.target.value) {
+      setTheme("white");
+    }
+    return setImageUrl(event.target.value);
   }
 
   return (
@@ -200,7 +208,7 @@ export default function App() {
             <p>Image URL</p>
             <Input
               value={imageUrl}
-              onChange={event => setImageUrl(event.target.value)}
+              onChange={event => handleImageUrlChange(event)}
             />
             <small>
               Images can be found on <a href="https://unsplash.com">Unsplash</a>
@@ -239,8 +247,12 @@ export default function App() {
                 onChange={event => setTheme(event.target.value)}
               >
                 <option value="white">White</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <option value="light" disabled={imageUrl}>
+                  Light
+                </option>
+                <option value="dark" disabled={imageUrl}>
+                  Dark
+                </option>
               </Select>
             </Label>
             <Label>
