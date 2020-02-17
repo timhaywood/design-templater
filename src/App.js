@@ -40,6 +40,8 @@ const Design = styled.div`
 `;
 
 const ContentArea = styled.div`
+  overflow: hidden;
+  max-height: 100%;
   align-self: center;
   max-width: 70%;
 `;
