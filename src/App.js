@@ -48,13 +48,19 @@ const ImageArea = styled.div`
   height: 300px;
   overflow: hidden;
   img {
-    width: 100%;
-    height: auto;
+    position: relative;
+    left: 50%;
+    margin-left: -50%;
+    height: 100%;
+    min-width: 250px;
+    width: auto;
   }
 `;
 
 const DesignHeading = styled.h2`
   font-size: 36px;
+  line-height: 42px;
+  letter-spacing: -0.5px;
   margin: 0px;
   color: ${props => props.colour};
 `;
@@ -136,13 +142,13 @@ export default function App() {
   const [description, setDescription] = useState(
     "A brief description that describes the event. Should be kept short!",
   );
-  const [search, setSearch] = useState("cross church");
+
+  const defaultImageUrl = `https://source.unsplash.com/random/600x800/?church`;
+  const [imageUrl, setImageUrl] = useState(defaultImageUrl);
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
   const [location, setLocation] = useState("");
   const [isSaving, setSaving] = useState(false);
-
-  const imageSearches = search.split(" ").join(",");
   const dateObject = new Date(`${date}${time && ` ${time}`}`);
   const dateString = dateObject.toLocaleDateString("en-UK", {
     weekday: "long",
@@ -181,10 +187,10 @@ export default function App() {
             />
           </Label>
           <Label>
-            Image
+            Image URL
             <Input
-              value={search}
-              onChange={event => setSearch(event.target.value)}
+              value={imageUrl}
+              onChange={event => setImageUrl(event.target.value)}
             />
           </Label>
           <ControlGroup>
@@ -248,7 +254,7 @@ export default function App() {
       </Controls>
       <Design id="design" colour={colours[theme].background}>
         <ContentArea>
-          <Box paddingV={2}>
+          <Box paddingV={1}>
             <DesignHeading colour={colours[theme].heading}>
               {heading}
             </DesignHeading>
@@ -289,13 +295,11 @@ export default function App() {
             </Box>
           )}
         </ContentArea>
-        <ImageArea>
-          <img
-            src={`https://source.unsplash.com/random/600x800/?${imageSearches}`}
-            alt="Random"
-            draggable="false"
-          />
-        </ImageArea>
+        {imageUrl && (
+          <ImageArea>
+            <img src={imageUrl} alt="Random" draggable="false" />
+          </ImageArea>
+        )}
       </Design>
     </Content>
   );
