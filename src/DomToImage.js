@@ -4,6 +4,7 @@ var options = {
   // logging: true,
   // profile: true,
   useCORS: true,
+  scale: 3,
 };
 
 const saveImage = (elementId, callback) => {
