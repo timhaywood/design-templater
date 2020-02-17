@@ -29,7 +29,7 @@ const Design = styled.div`
   font-family: "Linotte";
   background-color: ${props => props.colour};
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 640px;
   height: 360px;
   min-width: 640px;
@@ -40,13 +40,18 @@ const Design = styled.div`
 `;
 
 const ContentArea = styled.div`
-  width: 46%;
+  align-self: center;
+  max-width: 70%;
 `;
+
 const ImageArea = styled.div`
+  margin-left: 24px;
   border-radius: 16px;
-  width: 250px;
+  min-width: 250px;
   height: 300px;
   overflow: hidden;
+  box-shadow: 0px 6px 16px rgba(27, 61, 107, 0.2),
+    12px 8px 64px rgba(27, 61, 107, 0.15);
   img {
     position: relative;
     left: 50%;
@@ -74,12 +79,11 @@ const DesignText = styled.p`
 const Label = styled.label`
   font-weight: bold;
   display: block;
+  margin: 24px 0px;
 `;
 
 const InputStyles = `
   display: block;
-  margin-top: 8px;
-  margin-bottom: 24px;
   font-family: sans-serif;
   padding: 8px;
   border: 2px solid black;
@@ -117,8 +121,10 @@ const DescriptionArea = styled.div`
 const ControlGroup = styled.div`
   display: flex;
   align-items: flex-start;
+  margin: 24px 0px;
 
   label {
+    margin: 0px;
     margin-right: 8px;
   }
 `;
@@ -173,29 +179,32 @@ export default function App() {
         <Heading>Event Slide Maker</Heading>
         <form>
           <Label>
-            Heading
+            <p>Heading</p>
             <InputArea
               value={heading}
               onChange={event => setHeading(event.target.value)}
             />
           </Label>
           <Label>
-            Description{" "}
+            <p>Description</p>
             <InputArea
               value={description}
               onChange={event => setDescription(event.target.value)}
             />
           </Label>
           <Label>
-            Image URL
+            <p>Image URL</p>
             <Input
               value={imageUrl}
               onChange={event => setImageUrl(event.target.value)}
             />
+            <small>
+              Images can be found on <a href="https://unsplash.com">Unsplash</a>
+            </small>
           </Label>
           <ControlGroup>
             <Label>
-              Date
+              <p>Date</p>
               <Input
                 type="date"
                 value={date}
@@ -203,7 +212,7 @@ export default function App() {
               />
             </Label>
             <Label>
-              Time
+              <p>Time</p>
               <Input
                 type="time"
                 value={time}
@@ -212,7 +221,7 @@ export default function App() {
             </Label>
           </ControlGroup>
           <Label>
-            Location
+            <p>Location</p>
             <Input
               value={location}
               onChange={event => setLocation(event.target.value)}
@@ -220,7 +229,7 @@ export default function App() {
           </Label>
           <ControlGroup>
             <Label>
-              Theme
+              <p>Theme</p>
               <Select
                 value={theme}
                 onChange={event => setTheme(event.target.value)}
@@ -231,7 +240,7 @@ export default function App() {
               </Select>
             </Label>
             <Label>
-              Hue
+              <p>Hue</p>
               <Select
                 value={hue}
                 onChange={event => setHue(event.target.value)}
