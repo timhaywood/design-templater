@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import saveImage from "./DomToImage";
 import useThemeColour from "./stphils-ds/colour";
-import { Calendar, Clock, MapPin } from "react-feather";
+import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
 
 const Heading = styled.h1`
   margin-bottom: 32px;
@@ -246,19 +246,19 @@ export default function App() {
           </DescriptionArea>
           {date && (
             <IconGroup>
-              <Calendar color={colours[theme].accent} />
+              <MdEvent size={18} color={colours[theme].accent} />
               <DesignText colour={colours[theme].text}>{dateString}</DesignText>
             </IconGroup>
           )}
           {date && (
             <IconGroup>
-              <Clock color={colours[theme].accent} />
+              <MdAccessTime size={18} color={colours[theme].accent} />
               <DesignText colour={colours[theme].text}>{timeString}</DesignText>
             </IconGroup>
           )}
           {location && (
             <IconGroup>
-              <MapPin color={colours[theme].accent} />
+              <MdPlace size={18} color={colours[theme].accent} />
               <DesignText colour={colours[theme].text}>{location}</DesignText>
             </IconGroup>
           )}
