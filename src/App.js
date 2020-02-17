@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import saveImage from "./DomToImage";
-import useThemeColour from "stphils-ds/colour";
+import useThemeColour from "./stphils-ds/colour";
 import { Calendar, Clock, MapPin } from "react-feather";
 
 const Heading = styled.h1`
@@ -25,8 +25,7 @@ const Controls = styled.div`
 
 const Design = styled.div`
   font-family: "Linotte";
-  color: black;
-  background-color: white;
+  background-color: ${props => props.colour};
   display: flex;
   justify-content: space-between;
   width: 640px;
@@ -46,6 +45,14 @@ const ImageArea = styled.div`
   width: 250px;
   height: 300px;
   overflow: hidden;
+`;
+
+const DesignHeading = styled.h2`
+  color: ${props => props.colour};
+`;
+
+const DesignText = styled.p`
+  color: ${props => props.colour};
 `;
 
 const Label = styled.label`
@@ -71,6 +78,10 @@ const InputArea = styled.textarea`
 `;
 
 const Input = styled.input`
+  ${InputStyles}
+`;
+
+const Select = styled.select`
   ${InputStyles}
 `;
 
@@ -191,31 +202,64 @@ export default function App() {
               onChange={event => setLocation(event.target.value)}
             />
           </Label>
+          <ControlGroup>
+            <Label>
+              Theme
+              <Select
+                value={theme}
+                onChange={event => setTheme(event.target.value)}
+              >
+                <option value="white">White</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </Select>
+            </Label>
+            <Label>
+              Hue
+              <Select
+                value={hue}
+                onChange={event => setHue(event.target.value)}
+              >
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="aqua">Aqua</option>
+                <option value="teal">Teal</option>
+                <option value="purple">Purple</option>
+                <option value="pink">Pink</option>
+                <option value="blue">Blue</option>
+              </Select>
+            </Label>
+          </ControlGroup>
           <Button onClick={e => handleSave(e, "design")}>
             {isSaving ? "Saving..." : "Save as PNG"}
           </Button>
         </form>
       </Controls>
-      <Design id="design">
+      <Design id="design" colour={colours[theme].background}>
         <ContentArea>
-          <h2>{heading}</h2>
-          <DescriptionArea>{description}</DescriptionArea>
+          <DesignHeading colour={colours[theme].heading}>
+            {heading}
+          </DesignHeading>
+          <DescriptionArea>
+            <DesignText colour={colours[theme].text}>{description}</DesignText>
+          </DescriptionArea>
           {date && (
             <IconGroup>
-              <Calendar />
-              <p>{dateString}</p>
+              <Calendar color={colours[theme].accent} />
+              <DesignText colour={colours[theme].text}>{dateString}</DesignText>
             </IconGroup>
           )}
           {date && (
             <IconGroup>
-              <Clock />
-              <p>{timeString}</p>
+              <Clock color={colours[theme].accent} />
+              <DesignText colour={colours[theme].text}>{timeString}</DesignText>
             </IconGroup>
           )}
           {location && (
             <IconGroup>
-              <MapPin />
-              <p>{location}</p>
+              <MapPin color={colours[theme].accent} />
+              <DesignText colour={colours[theme].text}>{location}</DesignText>
             </IconGroup>
           )}
         </ContentArea>
