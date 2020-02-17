@@ -157,7 +157,7 @@ export default function App() {
   const [time, setTime] = useState("01:01:00");
   const [location, setLocation] = useState("");
   const [isSaving, setSaving] = useState(false);
-  const dateObject = new Date(`${date}${time && ` ${time}`}`);
+  const dateObject = new Date(`${date || "2020/01/01"}${time && ` ${time}`}`);
   const dateString = dateObject.toLocaleDateString("en-UK", {
     weekday: "long",
     month: "long",
