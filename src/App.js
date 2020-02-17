@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import saveImage from "./DomToImage";
+
+import Box from "./stphils-ds/box";
 import useThemeColour from "./stphils-ds/colour";
 import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
 
@@ -48,10 +50,14 @@ const ImageArea = styled.div`
 `;
 
 const DesignHeading = styled.h2`
+  font-size: 36px;
+  margin: 0px;
   color: ${props => props.colour};
 `;
 
 const DesignText = styled.p`
+  font-size: 18px;
+  margin: 0px;
   color: ${props => props.colour};
 `;
 
@@ -108,7 +114,7 @@ const ControlGroup = styled.div`
 `;
 
 const IconGroup = styled.div`
-  margin-top: 16px;
+  margin: 0px;
   display: flex;
   align-items: center;
   p {
@@ -238,29 +244,45 @@ export default function App() {
       </Controls>
       <Design id="design" colour={colours[theme].background}>
         <ContentArea>
-          <DesignHeading colour={colours[theme].heading}>
-            {heading}
-          </DesignHeading>
-          <DescriptionArea>
-            <DesignText colour={colours[theme].text}>{description}</DesignText>
-          </DescriptionArea>
+          <Box paddingV={2}>
+            <DesignHeading colour={colours[theme].heading}>
+              {heading}
+            </DesignHeading>
+          </Box>
+          <Box paddingV={1}>
+            <DescriptionArea>
+              <DesignText colour={colours[theme].text}>
+                {description}
+              </DesignText>
+            </DescriptionArea>
+          </Box>
           {date && (
-            <IconGroup>
-              <MdEvent size={18} color={colours[theme].accent} />
-              <DesignText colour={colours[theme].text}>{dateString}</DesignText>
-            </IconGroup>
+            <Box paddingV={0.5}>
+              <IconGroup>
+                <MdEvent size={18} color={colours[theme].accent} />
+                <DesignText colour={colours[theme].text}>
+                  {dateString}
+                </DesignText>
+              </IconGroup>
+            </Box>
           )}
           {date && (
-            <IconGroup>
-              <MdAccessTime size={18} color={colours[theme].accent} />
-              <DesignText colour={colours[theme].text}>{timeString}</DesignText>
-            </IconGroup>
+            <Box paddingV={0.5}>
+              <IconGroup>
+                <MdAccessTime size={18} color={colours[theme].accent} />
+                <DesignText colour={colours[theme].text}>
+                  {timeString}
+                </DesignText>
+              </IconGroup>
+            </Box>
           )}
           {location && (
-            <IconGroup>
-              <MdPlace size={18} color={colours[theme].accent} />
-              <DesignText colour={colours[theme].text}>{location}</DesignText>
-            </IconGroup>
+            <Box paddingV={0.5}>
+              <IconGroup>
+                <MdPlace size={18} color={colours[theme].accent} />
+                <DesignText colour={colours[theme].text}>{location}</DesignText>
+              </IconGroup>
+            </Box>
           )}
         </ContentArea>
         <ImageArea>
