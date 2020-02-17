@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import saveImage from "./DomToImage";
+import useThemeColour from "stphils-ds/colour";
 import { Calendar, Clock, MapPin } from "react-feather";
 
 const Heading = styled.h1`
@@ -107,6 +108,9 @@ const IconGroup = styled.div`
 `;
 
 export default function App() {
+  const [theme, setTheme] = useState("white");
+  const [hue, setHue] = useState("blue");
+  const colours = useThemeColour(hue);
   const [heading, setHeading] = useState("Event Name");
   const [description, setDescription] = useState(
     "A brief description that describes the event. Should be kept short!",
