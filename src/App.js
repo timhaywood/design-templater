@@ -23,6 +23,7 @@ const Controls = styled.div`
 `;
 
 const Design = styled.div`
+  font-family: "Linotte";
   color: black;
   background-color: white;
   display: flex;
