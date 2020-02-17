@@ -47,7 +47,7 @@ const ContentArea = styled.div`
 `;
 
 const ImageArea = styled.div`
-  margin-left: 24px;
+  margin-left: 48px;
   border-radius: 16px;
   min-width: 250px;
   height: 300px;
