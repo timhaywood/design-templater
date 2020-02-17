@@ -47,6 +47,10 @@ const ImageArea = styled.div`
   width: 250px;
   height: 300px;
   overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const DesignHeading = styled.h2`
@@ -67,14 +71,14 @@ const Label = styled.label`
 `;
 
 const InputStyles = `
-display: block;
-margin-top: 8px;
-margin-bottom: 24px;
-font-family: sans-serif;
-padding: 8px;
-border: 2px solid black;
-font-size: small;
-resize: none;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 24px;
+  font-family: sans-serif;
+  padding: 8px;
+  border: 2px solid black;
+  font-size: small;
+  resize: none;
 `;
 
 const InputArea = styled.textarea`
@@ -287,8 +291,9 @@ export default function App() {
         </ContentArea>
         <ImageArea>
           <img
-            src={`https://source.unsplash.com/random/300x400/?${imageSearches}`}
+            src={`https://source.unsplash.com/random/600x800/?${imageSearches}`}
             alt="Random"
+            draggable="false"
           />
         </ImageArea>
       </Design>
