@@ -6,12 +6,18 @@ import Box from "./stphils-ds/box";
 import useThemeColour from "./stphils-ds/colour";
 import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
 
+const shadowStyles = `
+  box-shadow: 0px 6px 16px rgba(27, 61, 107, 0.2),
+  12px 8px 64px rgba(27, 61, 107, 0.15)
+`;
+
 const Heading = styled.h1`
   margin-bottom: 32px;
+  color: ${useThemeColour("grey").light.heading};
 `;
 
 const Content = styled.div`
-  background-color: black;
+  background-color: ${useThemeColour("grey").light.background};
   display: flex;
   align-items: center;
   font-family: sans-serif;
@@ -19,11 +25,14 @@ const Content = styled.div`
 `;
 
 const Controls = styled.div`
+  font-family: "Linotte", sans-serif;
   background-color: white;
   overflow: auto;
   height: 100vh;
   width: 420px;
   padding: 48px;
+  color: ${useThemeColour("blue").white.text};
+  ${shadowStyles};
 `;
 
 const Design = styled.div`
@@ -53,8 +62,6 @@ const ImageArea = styled.div`
   min-width: 250px;
   height: 300px;
   overflow: hidden;
-  box-shadow: 0px 6px 16px rgba(27, 61, 107, 0.2),
-    12px 8px 64px rgba(27, 61, 107, 0.15);
   img {
     position: relative;
     left: 50%;
@@ -82,14 +89,17 @@ const DesignText = styled.p`
 const Label = styled.label`
   font-weight: bold;
   display: block;
-  margin: 24px 0px;
+  margin: 0px;
 `;
 
 const InputStyles = `
+  width: 100%;
   display: block;
   font-family: sans-serif;
-  padding: 8px;
-  border: 2px solid black;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: ${useThemeColour("grey").light.background};
   font-size: small;
   resize: none;
 `;
@@ -106,15 +116,24 @@ const Input = styled.input`
 
 const Select = styled.select`
   ${InputStyles}
+  padding-right: 24px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='grey' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
 `;
 
 const Button = styled.button`
+  font-family: "Linotte", sans-serif;
   color: white;
-  padding: 8px;
+  padding: 8px 16px;
   font-weight: bold;
-  background-color: black;
-  margin-top: 12px;
+  border-radius: 16px;
+  background-color: ${useThemeColour("blue").dark.background};
   border: none;
+  ${shadowStyles};
 `;
 
 const DescriptionArea = styled.div`
@@ -124,8 +143,6 @@ const DescriptionArea = styled.div`
 const ControlGroup = styled.div`
   display: flex;
   align-items: flex-start;
-  margin: 24px 0px;
-
   label {
     margin: 0px;
     margin-right: 8px;
