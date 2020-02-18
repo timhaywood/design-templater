@@ -67,6 +67,10 @@ const ImageArea = styled.div`
   img {
     height: 100%;
     width: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
