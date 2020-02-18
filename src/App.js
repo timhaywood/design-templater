@@ -59,16 +59,14 @@ const ContentArea = styled.div`
 const ImageArea = styled.div`
   margin-left: 48px;
   border-radius: 16px;
-  min-width: 250px;
+  width: auto;
   height: 300px;
+  max-width: 250px;
+  flex-shrink: 0;
   overflow: hidden;
   img {
-    position: relative;
-    left: 50%;
-    margin-left: -50%;
-    height: 100%;
-    min-width: 250px;
-    width: auto;
+    width: 100%;
+    height: auto;
   }
 `;
 
