@@ -20,6 +20,7 @@ const Content = styled.div`
 
 const Controls = styled.div`
   background-color: white;
+  overflow: auto;
   height: 100vh;
   width: 420px;
   padding: 48px;
