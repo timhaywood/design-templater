@@ -150,6 +150,7 @@ export default function App() {
   const [description, setDescription] = useState(
     "A brief description that describes the event. Should be kept short!",
   );
+  const [language, setLanguage] = useState("en-UK");
 
   const defaultImageUrl = `https://images.unsplash.com/photo-1503756234508-e32369269deb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80`;
   const [imageUrl, setImageUrl] = useState(defaultImageUrl);
@@ -158,14 +159,14 @@ export default function App() {
   const [location, setLocation] = useState("");
   const [isSaving, setSaving] = useState(false);
   const dateObject = new Date(`${date || "2020/01/01"}${time && ` ${time}`}`);
-  const dateString = dateObject.toLocaleDateString("en-UK", {
+  const dateString = dateObject.toLocaleDateString(language, {
     weekday: "long",
     month: "long",
     day: "numeric",
   });
 
   const timeString = dateObject
-    .toLocaleTimeString("en-UK", {
+    .toLocaleTimeString(language, {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
@@ -190,6 +191,18 @@ export default function App() {
       <Controls>
         <Heading>Event Slide Maker</Heading>
         <form>
+          <Label>
+            <p>Language</p>
+            <Select
+              value={language}
+              onChange={event => setLanguage(event.target.value)}
+            >
+              <option value="en-UK">English</option>
+              <option value="zh-HANT">Chinese Traditional</option>
+              <option value="zh-HANS">Chinese Simplified</option>
+              <option value="ko">Korean</option>
+            </Select>
+          </Label>
           <Label>
             <p>Heading</p>
             <InputArea
