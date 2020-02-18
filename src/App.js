@@ -57,7 +57,7 @@ const ContentArea = styled.div`
 `;
 
 const ImageArea = styled.div`
-  margin-left: 48px;
+  margin-left: 36px;
   border-radius: 16px;
   width: auto;
   height: 300px;
