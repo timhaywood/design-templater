@@ -308,9 +308,11 @@ export default function App() {
           {imageUrl && (
             <small>(Other themes are only available without an image)</small>
           )}
-          <Button onClick={e => handleSave(e, "design")}>
-            {isSaving ? "Saving..." : "Save as PNG"}
-          </Button>
+          <Box paddingV={6}>
+            <Button onClick={e => handleSave(e, "design")}>
+              {isSaving ? "Saving..." : "Save as PNG"}
+            </Button>
+          </Box>
         </form>
       </Controls>
       <Design id="design" colour={colours[theme].background}>
