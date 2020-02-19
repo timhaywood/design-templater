@@ -40,7 +40,8 @@ const Controls = styled.div`
 `;
 
 const Design = styled.div`
-  font-family: "Linotte";
+  font-family: "Linotte", "Noto Sans SC", "Noto Sans TC", "Noto Sans KR",
+    sans-serif;
   background-color: ${props => props.colour};
   display: flex;
   justify-content: center;

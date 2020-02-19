@@ -5,6 +5,9 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@openfonts/noto-sans-kr_korean": "^1.44.0",
+    "@openfonts/noto-sans-sc_chinese-simplified": "^1.44.1",
+    "@openfonts/noto-sans-tc_chinese-traditional": "^1.44.0",
     "babel-plugin-styled-components": "1.10.6",
     "html2canvas": "1.0.0-rc.5",
     "react": "16.12.0",
