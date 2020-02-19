@@ -140,6 +140,16 @@ const Button = styled.button`
   ${shadowStyles};
 `;
 
+const StrokeButton = styled.button`
+  font-family: "Linotte", sans-serif;
+  color: ${useThemeColour("blue").white.heading};
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 16px;
+  background-color: white;
+  border: 2px solid ${useThemeColour("blue").white.accent};
+`;
+
 const DescriptionArea = styled.div`
   white-space: pre-wrap;
 `;
@@ -174,12 +184,11 @@ export default function App() {
   );
   const [language, setLanguage] = useState("en-UK");
 
-  const defaultImageUrl = `https://images.unsplash.com/photo-1503756234508-e32369269deb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80`;
-  const [imageUrl, setImageUrl] = useState(defaultImageUrl);
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
   const [location, setLocation] = useState("");
   const [isSaving, setSaving] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState("");
   const dateObject = new Date(`${date || "2020/01/01"}${time && ` ${time}`}`);
   const dateString = dateObject.toLocaleDateString(language, {
     weekday: "long",
@@ -201,11 +210,11 @@ export default function App() {
     saveImage(id, () => setSaving(false));
   }
 
-  function handleImageUrlChange(event) {
-    if (event.target.value) {
-      setTheme("white");
-    }
-    return setImageUrl(event.target.value);
+  function handleFileUpload(event) {
+    event.preventDefault();
+    const imagePath = URL.createObjectURL(event.target.files[0]);
+    setUploadedImage(imagePath);
+    setTheme("white");
   }
 
   return (
@@ -247,16 +256,25 @@ export default function App() {
           </Label>
           <Box paddingV={2} />
           <Label>
-            <p>Image URL</p>
+            <p>Image file</p>
             <Box paddingV={0.5} />
             <Input
-              value={imageUrl}
-              onChange={event => handleImageUrlChange(event)}
+              type="file"
+              accept="image/x-png,image/jpeg"
+              onChange={e => handleFileUpload(e)}
             />
             <Box paddingV={1} />
-            <Small>
-              Images can be found on <a href="https://unsplash.com">Unsplash</a>
-            </Small>
+            {!uploadedImage && (
+              <Small>
+                Images can be found on{" "}
+                <a href="https://unsplash.com">Unsplash</a>
+              </Small>
+            )}
+            {uploadedImage && (
+              <StrokeButton onClick={() => setUploadedImage("")}>
+                Clear Image
+              </StrokeButton>
+            )}
           </Label>
           <Box paddingV={2} />
           <ControlGroup>
@@ -298,10 +316,10 @@ export default function App() {
                 onChange={event => setTheme(event.target.value)}
               >
                 <option value="white">White</option>
-                <option value="light" disabled={imageUrl}>
+                <option value="light" disabled={uploadedImage}>
                   Light
                 </option>
-                <option value="dark" disabled={imageUrl}>
+                <option value="dark" disabled={uploadedImage}>
                   Dark
                 </option>
               </Select>
@@ -324,7 +342,7 @@ export default function App() {
               </Select>
             </Label>
           </ControlGroup>
-          {imageUrl && (
+          {uploadedImage && (
             <>
               <Box paddingV={1} />
               <Small>Other themes are only available without an image</Small>
@@ -379,9 +397,9 @@ export default function App() {
             </Box>
           )}
         </ContentArea>
-        {imageUrl && (
+        {uploadedImage && (
           <ImageArea>
-            <img src={imageUrl} alt="Random" draggable="false" />
+            <img src={uploadedImage} alt="Random" draggable="false" />
           </ImageArea>
         )}
       </Design>
