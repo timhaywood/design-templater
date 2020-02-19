@@ -6,13 +6,17 @@ import Box from "./stphils-ds/box";
 import useThemeColour from "./stphils-ds/colour";
 import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
 
+const Small = styled.p`
+  font-size: 12px;
+  font-weight: normal;
+`;
+
 const shadowStyles = `
   box-shadow: 0px 6px 16px rgba(27, 61, 107, 0.2),
   12px 8px 64px rgba(27, 61, 107, 0.15)
 `;
 
 const Heading = styled.h1`
-  margin-bottom: 32px;
   color: ${useThemeColour("grey").light.heading};
 `;
 
@@ -78,20 +82,17 @@ const DesignHeading = styled.h2`
   font-size: 36px;
   line-height: 42px;
   letter-spacing: -0.5px;
-  margin: 0px;
   color: ${props => props.colour};
 `;
 
 const DesignText = styled.p`
   font-size: 18px;
-  margin: 0px;
   color: ${props => props.colour};
 `;
 
 const Label = styled.label`
   font-weight: bold;
   display: block;
-  margin: 0px;
 `;
 
 const InputStyles = `
@@ -210,9 +211,11 @@ export default function App() {
     <Content className="App">
       <Controls>
         <Heading>Event Slide Maker</Heading>
+        <Box paddingV={2} />
         <form>
           <Label>
             <p>Language</p>
+            <Box paddingV={0.5} />
             <Select
               value={language}
               onChange={event => setLanguage(event.target.value)}
@@ -223,32 +226,41 @@ export default function App() {
               <option value="ko">Korean</option>
             </Select>
           </Label>
+          <Box paddingV={2} />
           <Label>
             <p>Heading</p>
+            <Box paddingV={0.5} />
             <InputArea
               value={heading}
               onChange={event => setHeading(event.target.value)}
             />
           </Label>
+          <Box paddingV={2} />
           <Label>
             <p>Description</p>
+            <Box paddingV={0.5} />
             <InputArea
               value={description}
               onChange={event => setDescription(event.target.value)}
             />
           </Label>
+          <Box paddingV={2} />
           <Label>
             <p>Image URL</p>
+            <Box paddingV={0.5} />
             <Input
               value={imageUrl}
               onChange={event => handleImageUrlChange(event)}
             />
-            <small>
+            <Box paddingV={1} />
+            <Small>
               Images can be found on <a href="https://unsplash.com">Unsplash</a>
-            </small>
+            </Small>
           </Label>
+          <Box paddingV={2} />
           <ControlGroup>
             <Label>
+              <Box paddingV={0.5} />
               <p>Date</p>
               <Input
                 type="date"
@@ -258,6 +270,7 @@ export default function App() {
             </Label>
             <Label>
               <p>Time</p>
+              <Box paddingV={0.5} />
               <Input
                 type="time"
                 value={time}
@@ -265,16 +278,20 @@ export default function App() {
               />
             </Label>
           </ControlGroup>
+          <Box paddingV={2} />
           <Label>
             <p>Location</p>
+            <Box paddingV={0.5} />
             <Input
               value={location}
               onChange={event => setLocation(event.target.value)}
             />
           </Label>
+          <Box paddingV={2} />
           <ControlGroup>
             <Label>
               <p>Theme</p>
+              <Box paddingV={0.5} />
               <Select
                 value={theme}
                 onChange={event => setTheme(event.target.value)}
@@ -290,6 +307,7 @@ export default function App() {
             </Label>
             <Label>
               <p>Hue</p>
+              <Box paddingV={0.5} />
               <Select
                 value={hue}
                 onChange={event => setHue(event.target.value)}
@@ -306,13 +324,15 @@ export default function App() {
             </Label>
           </ControlGroup>
           {imageUrl && (
-            <small>(Other themes are only available without an image)</small>
+            <>
+              <Box paddingV={1} />
+              <Small>Other themes are only available without an image</Small>
+            </>
           )}
-          <Box paddingV={6}>
-            <Button onClick={e => handleSave(e, "design")}>
-              {isSaving ? "Saving..." : "Save as PNG"}
-            </Button>
-          </Box>
+          <Box paddingV={2} />
+          <Button onClick={e => handleSave(e, "design")}>
+            {isSaving ? "Saving..." : "Save as PNG"}
+          </Button>
         </form>
       </Controls>
       <Design id="design" colour={colours[theme].background}>
