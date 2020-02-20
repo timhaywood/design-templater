@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
+import {
+  MdEvent,
+  MdAccessTime,
+  MdPlace,
+  MdClear,
+  MdFileDownload,
+  MdCached,
+} from "react-icons/md";
 
 import saveImage from "../utils/saveImage";
 import Box from "../stphils-ds/Box";
@@ -51,6 +58,7 @@ export default function EventSlide() {
   const [theme, setTheme] = useState("white");
   const [hue, setHue] = useState("blue");
   const themeColours = useThemeColours(hue);
+  const blueColours = useThemeColours("blue");
   const hues = Object.keys(colours);
 
   const [heading, setHeading] = useState("Event Name");
@@ -148,7 +156,10 @@ export default function EventSlide() {
             )}
             {uploadedImage && (
               <StrokeButton onClick={() => setUploadedImage("")}>
-                Clear Image
+                <TextWithIcon
+                  text={"Clear Image"}
+                  icon={<MdClear size={18} color={blueColours.white.accent} />}
+                />
               </StrokeButton>
             )}
           </Label>
@@ -225,7 +236,19 @@ export default function EventSlide() {
           )}
           <Box paddingV={2} />
           <Button onClick={e => handleSave(e, "design")}>
-            {isSaving ? "Saving..." : "Save as PNG"}
+            {!isSaving ? (
+              <TextWithIcon
+                text={"Save as PNG"}
+                icon={
+                  <MdFileDownload size={18} color={blueColours.dark.accent} />
+                }
+              />
+            ) : (
+              <TextWithIcon
+                text={"Saving"}
+                icon={<MdCached size={18} color={blueColours.dark.accent} />}
+              />
+            )}
           </Button>
         </form>
       </ControlsArea>

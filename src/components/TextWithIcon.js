@@ -13,6 +13,7 @@ export function TextWithIcon({ icon, text }) {
       <div
         css={`
           flex-shrink: 0;
+          height: 10px;
         `}
       >
         {icon}
