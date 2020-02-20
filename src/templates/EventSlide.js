@@ -1,58 +1,26 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import saveImage from "./DomToImage";
-
-import Box from "./stphils-ds/box";
-import useThemeColour from "./stphils-ds/colour";
+import styled from "styled-components/macro";
 import { MdEvent, MdAccessTime, MdPlace } from "react-icons/md";
 
-const Small = styled.p`
-  font-size: 12px;
-  font-weight: normal;
-`;
+import saveImage from "../utils/saveImage";
+import Box from "../stphils-ds/Box";
+import { useThemeColours, colours } from "../stphils-ds/Colour";
+import {
+  Label,
+  Select,
+  InputArea,
+  Input,
+  StrokeButton,
+  ControlGroup,
+  Button,
+} from "../stphils-ds/Forms";
 
-const shadowStyles = `
-  box-shadow: 0px 6px 16px rgba(27, 61, 107, 0.2),
-  12px 8px 64px rgba(27, 61, 107, 0.15)
-`;
-
-const Heading = styled.h1`
-  color: ${useThemeColour("grey").light.heading};
-`;
-
-const Content = styled.div`
-  background-color: ${useThemeColour("grey").light.background};
-  display: flex;
-  align-items: center;
-  font-family: sans-serif;
-  margin: auto;
-`;
-
-const Controls = styled.div`
-  font-family: "Linotte", sans-serif;
-  background-color: white;
-  overflow: auto;
-  height: 100vh;
-  width: 420px;
-  padding: 48px;
-  color: ${useThemeColour("blue").white.text};
-  ${shadowStyles};
-`;
-
-const Design = styled.div`
-  font-family: "Linotte", "Noto Sans SC", "Noto Sans TC", "Noto Sans KR",
-    sans-serif;
-  background-color: ${props => props.colour};
-  display: flex;
-  justify-content: center;
-  width: 640px;
-  height: 360px;
-  min-width: 640px;
-  min-height: 360px;
-  padding: 32px 48px;
-  line-height: 150%;
-  margin: 0 auto;
-`;
+import { ControlsArea } from "../components/ControlsArea";
+import { Page } from "../components/Page";
+import { Artboard } from "../components/Artboard";
+import { TextWithIcon } from "../components/TextWithIcon";
+import { DesignHeading, DesignText } from "../components/DesignCopy";
+import { ControlHeading, Small } from "../components/ControlsCopy";
 
 const ContentArea = styled.div`
   overflow: hidden;
@@ -79,116 +47,24 @@ const ImageArea = styled.div`
   }
 `;
 
-const DesignHeading = styled.h2`
-  font-size: 36px;
-  line-height: 42px;
-  letter-spacing: -0.5px;
-  color: ${props => props.colour};
-`;
-
-const DesignText = styled.p`
-  font-size: 18px;
-  color: ${props => props.colour};
-`;
-
-const Label = styled.label`
-  font-weight: bold;
-  display: block;
-`;
-
-const InputStyles = `
-  width: 100%;
-  display: block;
-  font-family: sans-serif;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background-color: ${useThemeColour("grey").light.background};
-  font-size: small;
-  resize: none;
-`;
-
-const InputArea = styled.textarea`
-  ${InputStyles}
-  width: 100%;
-  height: 64px;
-`;
-
-const Input = styled.input`
-  ${InputStyles}
-`;
-
-const Select = styled.select`
-  ${InputStyles}
-  padding-right: 24px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='grey' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
-`;
-
-const Button = styled.button`
-  font-family: "Linotte", sans-serif;
-  color: white;
-  padding: 8px 16px;
-  font-weight: bold;
-  border-radius: 16px;
-  background-color: ${useThemeColour("blue").dark.background};
-  border: none;
-  ${shadowStyles};
-`;
-
-const StrokeButton = styled.button`
-  font-family: "Linotte", sans-serif;
-  color: ${useThemeColour("blue").white.heading};
-  padding: 8px 16px;
-  font-weight: bold;
-  border-radius: 16px;
-  background-color: white;
-  border: 2px solid ${useThemeColour("blue").white.accent};
-`;
-
-const DescriptionArea = styled.div`
-  white-space: pre-wrap;
-`;
-
-const ControlGroup = styled.div`
-  display: flex;
-  align-items: flex-start;
-  label {
-    margin: 0px;
-    margin-right: 8px;
-  }
-`;
-
-const IconGroup = styled.div`
-  margin: 0px;
-  display: flex;
-  align-items: center;
-  p {
-    margin: 0;
-    margin-left: 8px;
-    padding-top: 3px;
-  }
-`;
-
-export default function App() {
+export default function EventSlide() {
   const [theme, setTheme] = useState("white");
   const [hue, setHue] = useState("blue");
-  const colours = useThemeColour(hue);
+  const themeColours = useThemeColours(hue);
+  const hues = Object.keys(colours);
+
   const [heading, setHeading] = useState("Event Name");
   const [description, setDescription] = useState(
     "A brief description that describes the event. Should be kept short!",
   );
   const [language, setLanguage] = useState("en-UK");
-
   const [date, setDate] = useState("2020-01-01");
   const [time, setTime] = useState("01:01:00");
   const [location, setLocation] = useState("");
-  const [isSaving, setSaving] = useState(false);
   const [uploadedImage, setUploadedImage] = useState("");
+
+  const [isSaving, setSaving] = useState(false);
+
   const dateObject = new Date(`${date || "2020/01/01"}${time && ` ${time}`}`);
   const dateString = dateObject.toLocaleDateString(language, {
     weekday: "long",
@@ -218,9 +94,9 @@ export default function App() {
   }
 
   return (
-    <Content className="App">
-      <Controls>
-        <Heading>Event Slide Maker</Heading>
+    <Page className="App">
+      <ControlsArea>
+        <ControlHeading>Event Slides</ControlHeading>
         <Box paddingV={2} />
         <form>
           <Label>
@@ -279,8 +155,8 @@ export default function App() {
           <Box paddingV={2} />
           <ControlGroup>
             <Label>
-              <Box paddingV={0.5} />
               <p>Date</p>
+              <Box paddingV={0.5} />
               <Input
                 type="date"
                 value={date}
@@ -331,14 +207,13 @@ export default function App() {
                 value={hue}
                 onChange={event => setHue(event.target.value)}
               >
-                <option value="red">Red</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="aqua">Aqua</option>
-                <option value="teal">Teal</option>
-                <option value="purple">Purple</option>
-                <option value="pink">Pink</option>
-                <option value="blue">Blue</option>
+                {hues.map(hue => {
+                  return (
+                    <option key={hue} value={hue}>
+                      {hue.charAt(0).toUpperCase() + hue.slice(1)}
+                    </option>
+                  );
+                })}
               </Select>
             </Label>
           </ControlGroup>
@@ -353,48 +228,65 @@ export default function App() {
             {isSaving ? "Saving..." : "Save as PNG"}
           </Button>
         </form>
-      </Controls>
-      <Design id="design" colour={colours[theme].background}>
+      </ControlsArea>
+      <Artboard id="design" colour={themeColours[theme].background}>
         <ContentArea>
-          <Box paddingV={1}>
-            <DesignHeading colour={colours[theme].heading}>
-              {heading}
-            </DesignHeading>
-          </Box>
-          <Box paddingV={1}>
-            <DescriptionArea>
-              <DesignText colour={colours[theme].text}>
+          {heading && (
+            <>
+              <DesignHeading colour={themeColours[theme].heading}>
+                {heading}
+              </DesignHeading>
+              <Box paddingV={1} />
+            </>
+          )}
+          {description && (
+            <>
+              <DesignText colour={themeColours[theme].text}>
                 {description}
               </DesignText>
-            </DescriptionArea>
-          </Box>
+              <Box paddingV={1} />
+            </>
+          )}
           {date && (
-            <Box paddingV={0.5}>
-              <IconGroup>
-                <MdEvent size={18} color={colours[theme].accent} />
-                <DesignText colour={colours[theme].text}>
-                  {dateString}
-                </DesignText>
-              </IconGroup>
-            </Box>
+            <>
+              <TextWithIcon
+                icon={<MdEvent size={18} color={themeColours[theme].accent} />}
+                text={
+                  <DesignText colour={themeColours[theme].text}>
+                    {dateString}
+                  </DesignText>
+                }
+              />
+              <Box paddingV={0.5} />
+            </>
           )}
           {time && (
-            <Box paddingV={0.5}>
-              <IconGroup>
-                <MdAccessTime size={18} color={colours[theme].accent} />
-                <DesignText colour={colours[theme].text}>
-                  {timeString}
-                </DesignText>
-              </IconGroup>
-            </Box>
+            <>
+              <TextWithIcon
+                icon={
+                  <MdAccessTime size={18} color={themeColours[theme].accent} />
+                }
+                text={
+                  <DesignText colour={themeColours[theme].text}>
+                    {timeString}
+                  </DesignText>
+                }
+              />
+              <Box paddingV={0.5} />
+            </>
           )}
           {location && (
-            <Box paddingV={0.5}>
-              <IconGroup>
-                <MdPlace size={18} color={colours[theme].accent} />
-                <DesignText colour={colours[theme].text}>{location}</DesignText>
-              </IconGroup>
-            </Box>
+            <>
+              <TextWithIcon
+                icon={<MdPlace size={18} color={themeColours[theme].accent} />}
+                text={
+                  <DesignText colour={themeColours[theme].text}>
+                    {location}
+                  </DesignText>
+                }
+              />
+              <Box paddingV={0.5} />
+            </>
           )}
         </ContentArea>
         {uploadedImage && (
@@ -402,7 +294,7 @@ export default function App() {
             <img src={uploadedImage} alt="Random" draggable="false" />
           </ImageArea>
         )}
-      </Design>
-    </Content>
+      </Artboard>
+    </Page>
   );
 }

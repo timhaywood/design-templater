@@ -1,4 +1,4 @@
-const colours = {
+export const colours = {
   pink: {
     500: "#943294",
     400: "#943294",
@@ -82,7 +82,7 @@ const colours = {
   },
 };
 
-function useThemeColours(hue) {
+export function useThemeColours(hue) {
   return {
     white: {
       background: colours.grey[0],
@@ -104,5 +104,3 @@ function useThemeColours(hue) {
     },
   };
 }
-
-export default useThemeColours;

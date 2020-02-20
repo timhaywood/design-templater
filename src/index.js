@@ -5,7 +5,7 @@ import "@openfonts/noto-sans-kr_korean";
 import "@openfonts/noto-sans-sc_chinese-simplified";
 import "@openfonts/noto-sans-tc_chinese-traditional";
 
-import App from "./App";
+import EventSlides from "./templates/EventSlide";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<EventSlides />, rootElement);
