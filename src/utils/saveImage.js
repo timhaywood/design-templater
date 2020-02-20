@@ -9,9 +9,10 @@ var options = {
 };
 
 const saveImage = (elementId, callback) => {
-  let fileName = `Design_${new Date().toISOString().substring(0, 10)}.png`;
+  let fileName = `StPhils-Design_${new Date()
+    .toISOString()
+    .substring(0, 10)}.png`;
   html2canvas(document.getElementById(elementId), options).then(canvas => {
-    console.warn("Run!");
     const button = document.getElementById(elementId);
     const data = canvas.toDataURL("image/png");
     if (window.navigator.msSaveBlob) {
