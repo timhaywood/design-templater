@@ -6,6 +6,7 @@ import "@openfonts/noto-sans-sc_chinese-simplified";
 import "@openfonts/noto-sans-tc_chinese-traditional";
 
 import EventSlides from "./templates/EventSlide";
+import App from "./App";
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<EventSlides />, rootElement);
+ReactDOM.render(<App />, rootElement);
