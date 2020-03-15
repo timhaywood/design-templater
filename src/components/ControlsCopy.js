@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { useThemeColours } from "../stphils-ds/Colour";
+import { useThemeColours } from "../stphils-ds/colour";
 export const Small = styled.p`
   font-size: 12px;
   font-weight: normal;

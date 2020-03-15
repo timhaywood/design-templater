@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { useThemeColours } from "../stphils-ds/Colour";
+import { useThemeColours } from "../stphils-ds/colour";
 import { shadowStyles } from "../stphils-ds/shadowStyles";
 
 export const ControlsArea = styled.div`

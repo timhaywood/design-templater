@@ -10,8 +10,8 @@ import {
 } from "react-icons/md";
 
 import saveImage from "../utils/saveImage";
-import Box from "../stphils-ds/Box";
-import { useThemeColours, colours } from "../stphils-ds/Colour";
+import Box from "../stphils-ds/box";
+import { useThemeColours, colours } from "../stphils-ds/colour";
 import {
   Label,
   Select,

@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { useThemeColours } from "./Colour";
+import { useThemeColours } from "./colour";
 import { shadowStyles } from "./shadowStyles";
 export const Label = styled.label`
   font-weight: bold;

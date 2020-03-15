@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "../stphils-ds/Box";
+import Box from "../stphils-ds/box";
 import styled from "styled-components/macro";
 
 export function TextWithIcon({ icon, text }) {
