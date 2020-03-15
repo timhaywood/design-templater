@@ -6,4 +6,5 @@ export const Small = styled.p`
 `;
 export const ControlHeading = styled.h1`
   color: ${useThemeColours("blue").light.heading};
+  font-weight: 600;
 `;
