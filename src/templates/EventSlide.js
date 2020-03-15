@@ -25,7 +25,8 @@ import {
 import { ControlsArea } from "../components/ControlsArea";
 import { Page } from "../components/Page";
 import { Artboard } from "../components/Artboard";
-import { TextWithIcon } from "../components/TextWithIcon";
+import { TextWithIcon } from "../components/design/TextWithIcon";
+import { IconButton } from "../components/IconButton";
 import { DesignHeading, DesignText } from "../components/DesignCopy";
 import { ControlHeading, Small } from "../components/ControlsCopy";
 
@@ -156,7 +157,7 @@ export default function EventSlide() {
             )}
             {uploadedImage && (
               <StrokeButton onClick={() => setUploadedImage("")}>
-                <TextWithIcon
+                <IconButton
                   text={"Clear Image"}
                   icon={<MdClear size={18} color={blueColours.white.accent} />}
                 />
@@ -237,14 +238,14 @@ export default function EventSlide() {
           <Box paddingV={2} />
           <Button onClick={e => handleSave(e, "design")}>
             {!isSaving ? (
-              <TextWithIcon
+              <IconButton
                 text={"Save as PNG"}
                 icon={
                   <MdFileDownload size={18} color={blueColours.dark.accent} />
                 }
               />
             ) : (
-              <TextWithIcon
+              <IconButton
                 text={"Saving"}
                 icon={<MdCached size={18} color={blueColours.dark.accent} />}
               />

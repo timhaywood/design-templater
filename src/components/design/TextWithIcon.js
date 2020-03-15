@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "../stphils-ds/box";
+import Box from "../../stphils-ds/box";
 import styled from "styled-components/macro";
 
 export function TextWithIcon({ icon, text }) {
@@ -14,6 +14,8 @@ export function TextWithIcon({ icon, text }) {
         css={`
           flex-shrink: 0;
           height: 10px;
+          position: relative;
+          top: 3px;
         `}
       >
         {icon}
